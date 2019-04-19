@@ -1,5 +1,8 @@
 package com.epam.model;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Books {
     private int size; // virtual size
     private Book[] library;
@@ -72,6 +75,39 @@ public class Books {
             }
         }
         return new Books(result);
+    }
+
+    public Books sortByAuthor() {
+        Book[] booksCopy = Arrays.copyOf(getLibrary(), getLibrary().length);
+        Arrays.sort(booksCopy, new Comparator<Book>() {
+            @Override
+            public int compare(Book book1, Book book2) {
+                return book1.getAuthor().compareTo(book2.getAuthor());
+            }
+        });
+        return new Books(booksCopy);
+    }
+
+    public Books sortByPublisher() {
+        Book[] booksCopy = Arrays.copyOf(getLibrary(), getLibrary().length);
+        Arrays.sort(booksCopy, new Comparator<Book>() {
+            @Override
+            public int compare(Book book1, Book book2) {
+                return book1.getPublisher().compareTo(book2.getPublisher());
+            }
+        });
+        return new Books(booksCopy);
+    }
+
+    public Books sortByPrice() {
+        Book[] booksCopy = Arrays.copyOf(getLibrary(), getLibrary().length);
+        Arrays.sort(booksCopy, new Comparator<Book>() {
+            @Override
+            public int compare(Book book1, Book book2) {
+                return (int)(book1.getPrice() - book2.getPrice());
+            }
+        });
+        return new Books(booksCopy);
     }
 
 }

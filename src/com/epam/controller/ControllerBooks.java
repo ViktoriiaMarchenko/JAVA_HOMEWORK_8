@@ -34,19 +34,20 @@ public class ControllerBooks {
         books.addBook(new Book(124, "Stephen Chbosky", "The Perks of Being a Wallflower", "MTV Books/Pocket Books", 1999, 213, 19.65));
         books.addBook(new Book(125, "Sloane Crosley", "I Was Told There'd Be Cake", "Riverhead Books", 2008, 230, 54.85));
 
-        viewBooks.printBooks(books);
+        Books sortedBooks = this.books.sortByAuthor();
+        viewBooks.printBooks(sortedBooks);
 
         int percent = inputPositiveInt(INPUT_PERCENT_INCREASE, "Percent is incorrect, try again");
-        books.changePrice(percent);
-        viewBooks.printBooks(books);
+        this.books.changePrice(percent);
+        viewBooks.printBooks(this.books);
 
         viewBooks.printMessage(INPUT_AUTHOR);
         InputUtil.inputString();
-        Books authorBooks = books.findBooksByAuthor(InputUtil.inputString());
+        Books authorBooks = this.books.findBooksByAuthor(InputUtil.inputString());
         viewBooks.printBooks(authorBooks);
 
         int year = inputPositiveInt(INPUT_YEAR, "Year is incorrect, try again");
-        Books yearBooks = books.findBooksAfterYear(year);
+        Books yearBooks = this.books.findBooksAfterYear(year);
         viewBooks.printBooks(yearBooks);
     }
 
